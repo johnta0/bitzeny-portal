@@ -1,3 +1,4 @@
+require 'net/http'
 require 'bigdecimal'
 require 'bigdecimal/util'
 
