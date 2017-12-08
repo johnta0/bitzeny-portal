@@ -1,0 +1,18 @@
+.navbar.navbar-default
+  .container
+    %header.navbar-header
+      %button.navbar-toggle.collapsed{type: "button", "data-toggle": "collapse", "data-target": "#navbar", "aria-expanded": "false", "aria-controls": "navbar"}
+        %span.sr-onlyToggle
+          navigation
+        %span.icon-bar
+        %span.icon-bar
+      .navbar-brand
+        = link_to "BitZeny Portal", root_path
+    #navbar.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %a{ href: "https://c-cex.com/?p=zny-btc", id: "zny-btc", target: "_blank" }
+            ZNY/BTC #{@zny_btc}
+        %li
+          %a{ href: "#", id: "zny-jpy" }
+            ZNY/JPY #{@zny_jpy}

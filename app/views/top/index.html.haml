@@ -1,0 +1,23 @@
+%div.row
+  .col-lg-4.col-md-4.col-sd-4
+    %h2
+      BitZeny-BTC-JPY Converter
+      = form_tag(url_for(action: "index"), remote: true) do
+        %label
+          JPY
+        = text_field_tag :form_jpy
+        %label
+          BTC
+        = text_field_tag :form_btc
+        %label
+          ZNY
+        = text_field_tag :form_zny
+
+        
+
+-#%h1
+-#  Ajaxを使ってみよう
+-#= form_tag(url_for(action: 'index'), remote: true) do
+-#  = text_field_tag :title
+-#  = submit_tag "タイトルを変更する"
+
