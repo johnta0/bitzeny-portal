@@ -7,6 +7,23 @@ body {
   padding-top: 60px;
 }
 
+.navbar-default {
+  background-color: #EFEFEF;
+  li {
+    a#zny-btc#zny-jpy {
+     color: black;
+    }
+  }
+}
+
 .h2 {
   color: dodgerblue;
+}
+
+.converter-form {
+  margin: 0 10px;
+}
+
+label {
+  margin: 0 10px;
 }

@@ -1,1 +1,16 @@
-$('h1').html("<%= @btc_jpy %>");
+$(function() {
+    function update_last_price(id, url) {
+        $(id).fadeOut('fast');
+        $.get(url, function(json) {
+            $(id).text(json.last_price);
+        });
+        $(id).fadeIn('fast');
+    }
+
+    var update_all = function() {
+        update_last_price('#ZNY_JPY_LAST_PRICE', '/api/?/q=zny_jpy');
+        update_last_price('#ZNY_BTC_LAST_PRICE', '/api/?q=zny_btc');
+    };
+    update_all();
+    setInterval(update_all, 10000);
+});

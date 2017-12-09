@@ -5,19 +5,28 @@
     = form_tag(url_for(action: "index"), remote: true) do
       %label
         JPY
-      = text_field_tag :form_jpy
+      = text_field_tag :form_jpy, nil, {id: "CONVERT-JPY", class: "form-control converter-form", style: "width: 90px;"}
       %label
         BTC
-      = text_field_tag :form_btc
+      = text_field_tag :form_btc, nil, {id: "CONVERT-BTC", class: "form-control converter-form", style: "width: 90px;"}
       %label
         ZNY
-      = text_field_tag :form_zny
+      = text_field_tag :form_zny, nil, {id: "CONVERT-ZNY", class: "form-control converter-form", style: "width: 90px;"}
 
+:javascript
+  $(function() {
+    function update_last_price(id, url) {
+      $(id).fadeOut('fast');
+      $.get(url, function(json) {
+        $(id).text(json.last_price);
+      });
+      $(id).fadeIn('fast');
+    }
 
-
--#%h1
--#  Ajaxを使ってみよう
--#= form_tag(url_for(action: 'index'), remote: true) do
--#  = text_field_tag :title
--#  = submit_tag "タイトルを変更する"
-
+    var update_all = function() {
+      update_last_price('#ZNY_JPY_LAST_PRICE', '/api/?q=zny_jpy');
+      update_last_price('#ZNY_BTC_LAST_PRICE', '/api/?q=zny_btc');
+    };
+    update_all();
+    setInterval(update_all, 100000);
+  });
