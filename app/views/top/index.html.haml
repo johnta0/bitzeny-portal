@@ -1,23 +1,85 @@
 %div.row
   .col-lg-4.col-md-4.col-sd-4
-    %h2
-      BitZeny-BTC-JPY Converter
-      = form_tag(url_for(action: "index"), remote: true) do
-        %label
-          JPY
-        = text_field_tag :form_jpy
-        %label
-          BTC
-        = text_field_tag :form_btc
-        %label
-          ZNY
-        = text_field_tag :form_zny
+    %h2.h2
+      Converter
+    = form_tag(url_for(action: "index"), remote: true) do
+      %label
+        JPY
+      = text_field_tag :form_jpy, nil, {id: "CONVERT-JPY", class: "form-control converter-form", style: "width: 100px;"}
+      %label
+        BTC
+      = text_field_tag :form_btc, nil, {id: "CONVERT-BTC", class: "form-control converter-form", style: "width: 100px;"}
+      %label
+        ZNY
+      = text_field_tag :form_zny, nil, {id: "CONVERT-ZNY", class: "form-control converter-form", style: "width: 100px;"}
 
+:javascript
+  $(function() {
+    function update_last_price(id, url) {
+      $(id).fadeOut('fast');
+      $.get(url, function(json) {
+        $(id).text(json.last_price);
+      });
+      $(id).fadeIn('fast');
+    }
 
+    var update_all = function() {
+      update_last_price('#ZNY_JPY_LAST_PRICE', '/api/?q=zny_jpy');
+      update_last_price('#ZNY_BTC_LAST_PRICE', '/api/?q=zny_btc');
+    };
+    update_all();
+    setInterval(update_all, 10000);
+  });
 
--#%h1
--#  Ajaxを使ってみよう
--#= form_tag(url_for(action: 'index'), remote: true) do
--#  = text_field_tag :title
--#  = submit_tag "タイトルを変更する"
+:javascript
+  $(function() {
+    var PRECISION = 10000;
+    var BTC_PRECISION = 10000000;
+    var CAROUSEL_PRECISION = 10;
+    var url_zny_jpy = '/api/?q=zny_jpy';
+    var url_zny_btc = '/api/?q=zny_btc';
+    var last_price_zny_jpy = 0;
+    var last_price_zny_btc = 0;
+    function update_last_price() {
+      $.get(url_zny_jpy, function(json) {
+        last_price_zny_jpy = json.last_price;
+      });
+      $.get(url_zny_btc, function(json) {
+        last_price_zny_btc = json.last_price;
+      });
+    }
+
+    update_last_price();
+    setInterval(update_last_price, 10000);
+
+    $('#CONVERT-JPY').keyup(function(e) {
+      var jpy = $('#CONVERT-JPY').val();
+      $('#CONVERT-ZNY').val(parseInt(jpy / last_price_zny_jpy * PRECISION) / PRECISION);
+      $('#CONVERT-BTC').val(parseInt((jpy / last_price_zny_jpy) * last_price_zny_btc * BTC_PRECISION) / BTC_PRECISION);
+    });
+    $('#CONVERT-ZNY').keyup(function(e) {
+      var zny = $('#CONVERT-ZNY').val();
+      $('#CONVERT-JPY').val(parseInt(last_price_zny_jpy * zny * PRECISION) / PRECISION);
+      $('#CONVERT-BTC').val(parseInt(zny * last_price_zny_btc * BTC_PRECISION) / BTC_PRECISION);
+    });
+    $('#CONVERT-BTC').keyup(function(e) {
+      var btc = $('#CONVERT-BTC').val();
+      $('#CONVERT-zny').val(parseInt((btc / last_price_zny_btc) * PRECISION) / PRECISION);
+      var zny = btc / last_price_zny_btc;
+      $('#CONVERT-JPY').val(parseInt(last_price_zny_jpy * zny * PRECISION) / PRECISION);
+    });
+
+    function update_carousel_price() {
+      $('.CAROUSEL-PRICE').each(function() {
+        var jpy = $(this).attr('data-jpy');
+        if (last_price_zny_jpy > 0) {
+          $(this).text((parseInt(jpy / last_price_zny_jpy * CAROUSEL_PRECISION) / CAROUSEL_PRECISION) + ' zny');
+        } else {
+          $(this).text(jpy + "円");
+        }
+      });
+    }
+    update_carousel_price();
+    setInterval(update_carousel_price, 10000);
+  });
 

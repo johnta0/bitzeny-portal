@@ -1,9 +1,8 @@
-.navbar.navbar-default
+.navbar.navbar-default.navbar-fixed-top
   .container
     %header.navbar-header
       %button.navbar-toggle.collapsed{type: "button", "data-toggle": "collapse", "data-target": "#navbar", "aria-expanded": "false", "aria-controls": "navbar"}
         %span.sr-onlyToggle
-          navigation
         %span.icon-bar
         %span.icon-bar
       .navbar-brand.text-primary
@@ -11,8 +10,10 @@
     #navbar.collapse.navbar-collapse
       %ul.nav.navbar-nav
         %li
-          %a{ href: "https://c-cex.com/?p=zny-btc", id: "zny-btc", target: "_blank" }
-            ZNY/BTC #{@zny_btc}
+          %a{ href: "https://c-cex.com/?p=zny-btc", class: "text-info", target: "_blank" }
+            ZNY/BTC
+            %span#ZNY_BTC_LAST_PRICE{style: "display: inline;"}
         %li
-          %a{ href: "#", id: "zny-jpy" }
-            ZNY/JPY #{@zny_jpy}
+          %a{ href: "/api/?q=zny_jpy", class:"text-info" }
+            ZNY/JPY
+            %span#ZNY_JPY_LAST_PRICE{style: "display: inline;"}
