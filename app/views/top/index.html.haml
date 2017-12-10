@@ -37,6 +37,9 @@
         %a{ href: "http://nagesen-ch.com/", target: "_blank"  }
           なげせんch
       %li.list-group-item
+        %a{ href: "https://twitter.com/zenyhime", target: "_blank" }
+          ぜにぃ姫@BitZeny投銭Bot（Twitter）
+      %li.list-group-item
         %a{ href:"http://bitzeny.cswiki.jp/", target: "_blank"  }
           暗号通貨ＢｉｔＺｅｎｙまとめＷｉｋｉ
 
@@ -129,7 +132,7 @@
     });
     $('#CONVERT-BTC').keyup(function(e) {
       var btc = $('#CONVERT-BTC').val();
-      $('#CONVERT-zny').val(parseInt((btc / last_price_zny_btc) * PRECISION) / PRECISION);
+      $('#CONVERT-ZNY').val(parseInt((btc / last_price_zny_btc) * PRECISION) / PRECISION);
       var zny = btc / last_price_zny_btc;
       $('#CONVERT-JPY').val(parseInt(last_price_zny_jpy * zny * PRECISION) / PRECISION);
     });
