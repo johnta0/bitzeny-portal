@@ -13,6 +13,75 @@
         ZNY
       = text_field_tag :form_zny, nil, {id: "CONVERT-ZNY", class: "form-control converter-form", style: "width: 100px;"}
 
+  .col-lg-4.col-md-4.col-sd-4
+    %h2.h2
+      %a{ href: "http://zenyhime.sigruru.com/", target: "_blank"  }
+        ぜにぃ姫
+    = form_tag(url_for(action: "generate_tweet")) do
+      %span
+        投げ銭ツイートをしてみる！
+      %br
+      %br
+      %label
+        Screen Name（Twitter ID）
+      = text_field_tag :screen_name, nil, {class: "form-control converter-form", style: "width: 150px;"}
+      %label
+        投げ銭する額
+      = text_field_tag :amount, nil, {class: "form-control converter-form", style: "width: 150px;"}
+      = submit_tag "Generate", {class: "form-control generate-button"}
+
+  .col-lg-4.col-md-4.col-sd-4
+    %h2.h2
+      Links to Services
+    %ul.list-group
+      %li.list-group-item
+        %a{ href: "http://nagesen-ch.com/", target: "_blank"  }
+          なげせんch
+      %li.list-group-item
+        %a{ href: "https://twitter.com/zenyhime", target: "_blank" }
+          ぜにぃ姫@BitZeny投銭Bot（Twitter）
+      %li.list-group-item
+        %a{ href:"http://bitzeny.cswiki.jp/", target: "_blank"  }
+          暗号通貨ＢｉｔＺｅｎｙまとめＷｉｋｉ
+
+
+  .col-lg-4.col-md-4.col-sd-4
+    %h2.h2
+      Exchanges
+    %ul.list-group
+      %li.list-group-item
+        %a{ href: "https://c-cex.com/?p=zny-btc", target: "_blank"  }
+          C-CEX
+      %li.list-group-item
+        %a{ href: "https://stocks.exchange/trade/ZNY/BTC" }
+          Stocks.exchange
+      %li.list-group-item
+        %a{ href: "https://wallet.crypto-bridge.org/market/BRIDGE.BTC_BRIDGE.ZNY", target: "_blank"  }
+          CryptoBridge（Decentralized Exchange）
+
+  .col-lg-4.col-md-4.col-sd-4
+    %h2.h2
+      Links to Developers
+    %ul.list-group
+      %li.list-group-item
+        %a{ href: "https://github.com/BitzenyCoreDevelopers/bitzeny", target: "_blank"  }
+          Github Repository
+      %li.list-group-item
+        %a{ href: "https://github.com/onokatio", target: "_blank"  }
+          onokatio(Github)
+      %li.list-group-item
+        %a{ href: "https://twitter.com/Nagesen_ch", target: "_blank"  }
+          Nagesen_ch(Twitter)
+
+  .col-lg-4.col-md-4.col-sd-4
+    %h2.h2
+      Others
+    %ul.list-group
+      %li.list-group-item
+        %a{ href: "https://twitter.com/tomotomo_9696/status/938796944893272065", target: "_blank" }
+          tomotomo9696さんのツイート
+
+
 :javascript
   $(function() {
     function update_last_price(id, url) {
@@ -64,7 +133,7 @@
     });
     $('#CONVERT-BTC').keyup(function(e) {
       var btc = $('#CONVERT-BTC').val();
-      $('#CONVERT-zny').val(parseInt((btc / last_price_zny_btc) * PRECISION) / PRECISION);
+      $('#CONVERT-ZNY').val(parseInt((btc / last_price_zny_btc) * PRECISION) / PRECISION);
       var zny = btc / last_price_zny_btc;
       $('#CONVERT-JPY').val(parseInt(last_price_zny_jpy * zny * PRECISION) / PRECISION);
     });
