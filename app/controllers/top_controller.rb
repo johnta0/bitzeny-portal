@@ -24,6 +24,11 @@ class TopController < ApplicationController
     end
   end
 
+  def generate_tweet
+    screen_name = params[:screen_name]
+    amount = params[:amount]
+  end
+
   def api
     if params[:q].present?
       if params[:q] == 'zny_btc'
