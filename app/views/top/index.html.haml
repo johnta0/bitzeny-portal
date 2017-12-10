@@ -23,17 +23,20 @@
       %br
       %br
       %label
-        Screen Name（Twitter ID）
-      = text_field_tag :screen_name, nil, {class: "form-control converter-form", style: "width: 150px;"}
+        Tipする相手
+      = text_field_tag :screen_name, nil, {class: "form-control converter-form", placeholder: "TwitterID", style: "width: 150px;"}
       %label
         投げ銭する額
-      = text_field_tag :amount, nil, {class: "form-control converter-form", style: "width: 150px;"}
+      = text_field_tag :amount, nil, {class: "form-control converter-form", placeholder: "Amount",style: "width: 150px;"}
       = submit_tag "Generate", {class: "form-control generate-button"}
 
   .col-lg-4.col-md-4.col-sd-4
     %h2.h2
       Links to Services
     %ul.list-group
+      %li.list-group-item
+        %a{ href: "http://bitzeny.org/", target: "_blank" }
+          BitZeny公式サイト
       %li.list-group-item
         %a{ href: "http://nagesen-ch.com/", target: "_blank"  }
           なげせんch
@@ -43,7 +46,12 @@
       %li.list-group-item
         %a{ href:"http://bitzeny.cswiki.jp/", target: "_blank"  }
           暗号通貨ＢｉｔＺｅｎｙまとめＷｉｋｉ
-
+      %li.list-group-item
+        %a{ href: "https://zeny.ck9.jp/", target: "_blank" }
+          JPY/Bitzeny chart
+      %li.list-group-item
+        %a{ href: "https://lapool.me/bitzeny/index.php?page=login", target: "_blank" }
+          LA BitZeny Pool
 
   .col-lg-4.col-md-4.col-sd-4
     %h2.h2
@@ -69,6 +77,12 @@
       %li.list-group-item
         %a{ href: "https://github.com/onokatio", target: "_blank"  }
           onokatio(Github)
+      %li.list-group-item
+        %a{ href: "https://github.com/Sukorice", target: "_blank" }
+          Sukorice(Github)
+      %li.list-group-item
+        %a{ href: "https://github.com/zenywallet", target: "_blank" }
+          zenywallet(Github)
       %li.list-group-item
         %a{ href: "https://twitter.com/Nagesen_ch", target: "_blank"  }
           Nagesen_ch(Twitter)
