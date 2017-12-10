@@ -3,7 +3,7 @@ require 'bigdecimal'
 require 'bigdecimal/util'
 
 class TopController < ApplicationController
-  before_action :get_last_prices
+  before_action :get_last_prices, only: [:index, :api]
   def index
     # フォームから値を受取り、Convert計算を行う
     if params[:form_jpy].present?
