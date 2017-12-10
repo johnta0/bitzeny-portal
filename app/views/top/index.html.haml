@@ -24,10 +24,11 @@
       %br
       %label
         Screen Name（Twitter ID）
-      = text_field_tag :screen_name, nil, {class: "form-control", style: "width: 150px;"}
+      = text_field_tag :screen_name, nil, {class: "form-control converter-form", style: "width: 150px;"}
       %label
         投げ銭する額
-      = text_field_tag :amount, nil, {class: "form-control", style: "width: 150px;"}
+      = text_field_tag :amount, nil, {class: "form-control converter-form", style: "width: 150px;"}
+      = submit_tag "Generate", {class: "form-control generate-button"}
 
   .col-lg-4.col-md-4.col-sd-4
     %h2.h2
@@ -46,11 +47,11 @@
 
   .col-lg-4.col-md-4.col-sd-4
     %h2.h2
-      Exchanges where BitZeny is available
+      Exchanges
     %ul.list-group
       %li.list-group-item
         %a{ href: "https://c-cex.com/?p=zny-btc", target: "_blank"  }
-          C-CEX（2017年12月現在よく落ちる）（このサイトはここのAPIを利用している）
+          C-CEX
       %li.list-group-item
         %a{ href: "https://stocks.exchange/trade/ZNY/BTC" }
           Stocks.exchange

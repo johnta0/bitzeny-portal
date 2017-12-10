@@ -27,6 +27,11 @@ class TopController < ApplicationController
   def generate_tweet
     screen_name = params[:screen_name]
     amount = params[:amount]
+    intent_url = "https://twitter.com/intent/tweet?text="
+    tweet_text = "@zenyhime tip @#{screen_name} #{amount}"
+    intent_url += tweet_text
+    intent_url = URI.escape(intent_url)
+    redirect_to intent_url
   end
 
   def api

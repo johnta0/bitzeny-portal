@@ -16,12 +16,22 @@ body {
   }
 }
 
-.h2 {
-  color: dodgerblue;
-}
 
-.converter-form {
-  margin: 0 10px;
+.col-lg-4.col-md-4.col-sd-4 {
+  height: 300px;
+  .h2 {
+    color: dodgerblue;
+  }
+  .converter-form {
+    margin: 0 10px;
+  }
+  .generate-button {
+    margin-left: 10px;
+    width: 80px;
+    margin-top: 10px;
+    background-color: dodgerblue;
+    color: white;
+  }
 }
 
 label {
